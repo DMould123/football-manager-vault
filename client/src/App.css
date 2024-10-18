@@ -186,44 +186,78 @@ button:hover {
 .pitch {
   background-image: url('/src/assets/pitch-background.jpg');
   background-size: cover;
+  background-position: center;
   width: 100%;
-  height: 600px;
+  padding-top: 150%; /* 3:2 aspect ratio */
   position: relative;
   margin-bottom: 20px;
 }
 
 .player-position {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 15%;
+  max-width: 60px;
 }
 
 .player-upload {
+  position: relative;
   width: 100%;
-  height: 100%;
+  padding-top: 100%; /* 1:1 aspect ratio */
 }
 
-.player-upload img {
+.player-image,
+.upload-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .upload-placeholder {
-  width: 100%;
-  height: 100%;
+  background-color: #f0f0f0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  cursor: pointer;
+  align-items: center;
+  font-size: 12px;
+}
+
+.player-preview {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 10;
+  width: 200px;
+  max-width: 90vw;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.player-stats {
+  font-size: 12px;
+}
+
+.player-stats p {
+  margin: 5px 0;
 }
 
 .best-xi {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 1200px;
+  width: 90%;
+  margin: 20px auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
@@ -233,6 +267,7 @@ button:hover {
 .best-xi h1 {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
 }
 
 .formation-selector {
@@ -242,16 +277,18 @@ button:hover {
 
 .formation-selector h2 {
   margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .formation-selector button {
-  margin: 0 5px;
+  margin: 0 5px 5px;
   padding: 5px 10px;
   background-color: #ff7f50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .formation-selector button:hover {
@@ -268,6 +305,8 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  width: 100%;
+  max-width: 200px;
 }
 
 .best-xi button:hover {
@@ -345,5 +384,76 @@ button:hover {
 
   .logo {
     width: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .best-xi h1 {
+    font-size: 20px;
+  }
+
+  .formation-selector h2 {
+    font-size: 16px;
+  }
+
+  .formation-selector button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .player-preview {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .best-xi {
+    padding: 10px;
+  }
+
+  .best-xi h1 {
+    font-size: 18px;
+  }
+
+  .formation-selector h2 {
+    font-size: 14px;
+  }
+
+  .formation-selector button {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .player-preview {
+    width: 120px;
+  }
+}
+
+.best-xi-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.best-xi-sidebar {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.best-xi-main {
+  width: 100%;
+  max-width: 800px;
+}
+
+@media (min-width: 768px) {
+  .best-xi-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .best-xi-sidebar {
+    margin-right: 20px;
+    margin-bottom: 0;
   }
 }

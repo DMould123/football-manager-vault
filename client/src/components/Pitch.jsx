@@ -1,6 +1,6 @@
 import PlayerUpload from './PlayerUpload';
 
-function Pitch({ formation, players, onPlayerUpload }) {
+function Pitch({ formation, players, playerNames, onPlayerUpload, onPlayerNameChange }) {
   const positions = getPositionsForFormation(formation);
 
   return (
@@ -10,7 +10,9 @@ function Pitch({ formation, players, onPlayerUpload }) {
           <PlayerUpload
             position={position.name}
             imageUrl={players[position.name]}
+            playerName={playerNames[position.name]}
             onUpload={(imageUrl) => onPlayerUpload(position.name, imageUrl)}
+            onNameChange={onPlayerNameChange}
           />
         </div>
       ))}
@@ -24,7 +26,10 @@ function getPositionsForFormation(formation) {
     LB: { top: '70%', left: '20%' },
     CB1: { top: '75%', left: '35%' },
     CB2: { top: '75%', left: '65%' },
+    CB3: { top: '75%', left: '50%' },
     RB: { top: '70%', left: '80%' },
+    LWB: { top: '60%', left: '20%' },
+    RWB: { top: '60%', left: '80%' },
     DM: { top: '60%', left: '50%' },
     CM1: { top: '45%', left: '35%' },
     CM2: { top: '45%', left: '65%' },
@@ -40,7 +45,7 @@ function getPositionsForFormation(formation) {
   const formationPositions = {
     '4-4-2': ['GK', 'LB', 'CB1', 'CB2', 'RB', 'LM', 'CM1', 'CM2', 'RM', 'ST1', 'ST2'],
     '4-3-3': ['GK', 'LB', 'CB1', 'CB2', 'RB', 'DM', 'CM1', 'CM2', 'LW', 'ST', 'RW'],
-    '3-5-2': ['GK', 'CB1', 'CB2', 'CB3', 'LM', 'CM1', 'DM', 'CM2', 'RM', 'ST1', 'ST2'],
+    '3-5-2': ['GK', 'CB1', 'CB2', 'CB3', 'LWB', 'CM1', 'DM', 'CM2', 'RWB', 'ST1', 'ST2'],
     '5-3-2': ['GK', 'LWB', 'CB1', 'CB2', 'CB3', 'RWB', 'CM1', 'DM', 'CM2', 'ST1', 'ST2'],
   };
 

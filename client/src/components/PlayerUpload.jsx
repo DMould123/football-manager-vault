@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
-function PlayerUpload({ position, imageUrl, onUpload }) {
+function PlayerUpload({ position, imageUrl, onUpload, playerName, onNameChange }) {
   const [hovering, setHovering] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(playerName || '');
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -10,6 +12,15 @@ function PlayerUpload({ position, imageUrl, onUpload }) {
       reader.onload = (e) => onUpload(e.target.result);
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleNameSubmit = () => {
+    onNameChange(position, name);
+    setEditing(false);
   };
 
   return (
@@ -32,9 +43,24 @@ function PlayerUpload({ position, imageUrl, onUpload }) {
         onChange={handleFileChange}
         style={{ display: 'none' }}
       />
-      {hovering && imageUrl && (
+      {hovering && (
         <div className="player-preview">
-          <img src={imageUrl} alt={position} />
+          {editing ? (
+            <div>
+              <input
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+                onBlur={handleNameSubmit}
+                autoFocus
+              />
+            </div>
+          ) : (
+            <div onClick={() => setEditing(true)}>
+              {name || 'Click to add name'}
+            </div>
+          )}
+          {imageUrl && <img src={imageUrl} alt={position} />}
         </div>
       )}
     </div>

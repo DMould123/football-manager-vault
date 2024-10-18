@@ -7,9 +7,9 @@ const cookieParser = require('cookie-parser')
 const app = express()
 
 // Middleware
-app.use(express.json())
+app.use(express.json({ limit: '200mb' }));
 app.use(cookieParser()) // Call cookieParser as a function
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ limit: '200mb', extended: true }));
 
 const MONGO_URL = process.env.MONGO_URL
 const port = 8000
